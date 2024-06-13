@@ -9,7 +9,7 @@ def cal_f1_score(tp, fp, fn):
     if type(fn) != int:
         print("fn must be int")
         return
-    
+
     # Kiểm tra giá trị hợp lệ
     if tp <= 0 or fp <= 0 or fn <= 0:
         print("tp and fp and fn must be greater than zero")
@@ -29,4 +29,4 @@ cal_f1_score(tp='a', fp=3, fn=4)
 cal_f1_score(tp=2, fp='a', fn=4)
 cal_f1_score(tp=2, fp=3, fn='a')
 cal_f1_score(tp=2, fp=3, fn=0)
-cal_f1_score(tp=2.1, fp=3, fn=0)           
+cal_f1_score(tp=2.1, fp=3, fn=0)

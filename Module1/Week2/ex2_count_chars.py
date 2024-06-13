@@ -5,7 +5,7 @@ def count_chars(str):
             result[ch] = 1
         else:
             result[ch] = result[ch] + 1
-        
+
     print(result)
 
 

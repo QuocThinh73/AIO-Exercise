@@ -24,7 +24,7 @@ def regression_loss_function():
     n = input("Input number of samples (integer number) which are generated: ")
     if not n.isnumeric():
         print("number of samples must be an integer number")
-        return    
+        return
     function = input("Input loss name: ")
 
     n = int(n)
@@ -39,7 +39,8 @@ def regression_loss_function():
             loss = cal_mse(current_sample, 1)
         else:
             loss = cal_rmse(current_sample, 1)
-        print(f"loss name: {function}, sample: {i}, pred: {current_sample[0]}, target: {current_sample[1]}, loss: {loss}")
+        print(
+            f"loss name: {function}, sample: {i}, pred: {current_sample[0]}, target: {current_sample[1]}, loss: {loss}")
 
     final_loss = 0
     if function == "MAE":

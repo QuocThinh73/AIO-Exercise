@@ -33,17 +33,18 @@ def cal_activation_function():
         return
     x = float(x)
 
-    function = input("Input activation Function (sigmoid|relu|elu): ")
-    if function != "sigmoid" and function != "relu" and function != "elu":
-        print(f"{function} is not supported")
+    func = input("Input activation Function (sigmoid|relu|elu): ")
+    if function != "sigmoid" and func != "relu" and func != "elu":
+        print(f"{func} is not supported")
         return
 
-    if function == "sigmoid":
-        print(f"{function}: f({x}) = {cal_sigmoid_function(x)}")
-    elif function == "relu":
-        print(f"{function}: f({x}) = {cal_relu_function(x)}")
+    if func == "sigmoid":
+        print(f"{func}: f({x}) = {cal_sigmoid_function(x)}")
+    elif func == "relu":
+        print(f"{func}: f({x}) = {cal_relu_function(x)}")
     else:
-        print(f"{function}: f({x}) = {cal_elu_function(x)}")
+        print(f"{func}: f({x}) = {cal_elu_function(x)}")
+
 
 while (True):
     cal_activation_function()

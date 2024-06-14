@@ -1,13 +1,7 @@
 def cal_f1_score(tp, fp, fn):
     # Kiểm tra kiểu dữ liệu
-    if type(tp) != int:
+    if not isinstance(tp, int):
         print("tp must be int")
-        return
-    if type(fp) != int:
-        print("fp must be int")
-        return
-    if type(fn) != int:
-        print("fn must be int")
         return
 
     # Kiểm tra giá trị hợp lệ

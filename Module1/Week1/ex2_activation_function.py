@@ -46,5 +46,6 @@ def cal_activation_function():
         print(f"{func}: f({x}) = {cal_elu_function(x)}")
 
 
+
 while (True):
     cal_activation_function()

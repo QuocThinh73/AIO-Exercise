@@ -1,79 +1,86 @@
-class Student:
+from abc import ABC, abstractmethod
+
+
+class Person(ABC):
+    def __init__(self, name: str, yob: int):
+        self.__name = name
+        self.__yob = yob
+
+    def get_name(self):
+        return self.__name
+
+    def get_yob(self):
+        return self.__yob
+
+    @abstractmethod
+    def describe(self):
+        pass
+
+
+class Student(Person):
     def __init__(self, name: str, yob: int, grade: str):
-        self.name = name
-        self.yob = yob
-        self.grade = grade
-        self.job = "Student"
+        super().__init__(name, yob)
+        self.__grade = grade
 
     def describe(self):
         print(
-            f"Student - Name : {self.name} - YoB : {self.yob} - Grade : {self.grade}")
+            f"Student - Name : {self.get_name()} - YoB : {self.get_yob()} - Grade : {self.__grade}")
 
 
-class Teacher:
+class Teacher(Person):
     def __init__(self, name: str, yob: int, subject: str):
-        self.name = name
-        self.yob = yob
-        self.subject = subject
-        self.job = "Teacher"
+        super().__init__(name, yob)
+        self.__subject = subject
 
     def describe(self):
         print(
-            f"Teacher - Name : {self.name} - YoB : {self.yob} - Subject : {self.subject}")
+            f"Teacher - Name : {self.get_name()} - YoB : {self.get_yob()} - Subject : {self.__subject}")
 
 
-class Doctor:
+class Doctor(Person):
     def __init__(self, name: str, yob: int, specialist: str):
-        self.name = name
-        self.yob = yob
-        self.specialist = specialist
-        self.job = "Doctor"
+        super().__init__(name, yob)
+        self.__specialist = specialist
 
     def describe(self):
         print(
-            f"Student - Name : {self.name} - YoB : {self.yob} - Specialist : {self.specialist}")
+            f"Doctor - Name : {self.get_name()} - YoB : {self.get_yob()} - Specialist : {self.__specialist}")
 
 
 class Ward:
     def __init__(self, name):
-        self.name = name
-        self.person_list = []
+        self.__name = name
+        self.__person_list = []
 
-    def add_person(self, student):
-        self.person_list.append(student)
-
-    def add_person(self, teacher):
-        self.person_list.append(teacher)
-
-    def add_person(self, doctor):
-        self.person_list.append(doctor)
+    def add_person(self, person: Person):
+        self.__person_list.append(person)
 
     def describe(self):
-        print(f"Ward Name : {self.name}")
-        for person in self.person_list:
+        print(f"Ward Name : {self.__name}")
+        for person in self.__person_list:
             person.describe()
 
     def count_doctor(self):
         res = 0
-        for person in self.person_list:
-            if person.job == "Doctor":
+        for person in self.__person_list:
+            if isinstance(person, Doctor):
                 res += 1
         return res
 
     def sort_age(self):
-        for i in range(len(self.person_list) - 1):
-            for j in range(i + 1, len(self.person_list)):
-                if (self.person_list[i].yob < self.person_list[j].yob):
-                    person_temp = self.person_list[i]
-                    self.person_list[i] = self.person_list[j]
-                    self.person_list[j] = person_temp
+        for i in range(len(self.__person_list) - 1):
+            for j in range(i + 1, len(self.__person_list)):
+                if (self.__person_list[i].get_yob() < self.__person_list[j].get_yob()):
+                    person_temp = self.__person_list[i]
+                    self.__person_list[i] = self.__person_list[j]
+                    self.__person_list[j] = person_temp
 
     def compute_average(self):
         total_age = 0
         count = 0
-        for person in self.person_list:
-            if person.job == "Teacher":
-                total_age += person.yob
+        for person in self.__person_list:
+            if isinstance(person, Teacher):
+                total_age += person.get_yob()
                 count += 1
         return total_age / count
 
@@ -81,7 +88,7 @@ class Ward:
 student1 = Student(name="studentA", yob=2010, grade="7")
 student1.describe()
 
-teacher1 = Teacher(name=" teacherA ", yob=1969, subject="Math")
+teacher1 = Teacher(name="teacherA ", yob=1969, subject="Math")
 teacher1.describe()
 
 doctor1 = Doctor(name="doctorA", yob=1945, specialist="Endocrinologists")
